@@ -2,34 +2,37 @@ name: CI mentoria
 
 # gatilhos
 on:
- workflow_dispatch
+  workflow_dispatch:
 
 jobs:
- tests: 
-
-   #config do SO
-   runs-on: ubuntu-latest
-
-   #variaveis
-   env:
-    API_BASE_URL: 'http://localhost:3000'
-    PORT: 4000
-
+  tests: 
+    #config do SO 
+    runs-on: ubuntu-latest
+    #variaveis
+    env:
+      API_BASE_URL: 'http://localhost:3000'
+      PORT: 4000
    #acoes ou passos
-   steps:
-     - name: Checkout do repositório
-       uses: actions/checkout@v4
+    steps:
+      - name: Checkout do repositorio
+        uses: actions/checkout@v4
 
-     - name: Instalando dependências
-       run: npm install
-       
-     - name: Iniciando servidor da aplicação
-       run: npm run server &
+      - name: Instalar dependencias
+        run: npm install
+      
+      - name: Iniciar servidor de Mock do REST API
+        run: npm run mock-server &
 
-     - name: Iniciando servidor do Mock 
-       run: npm run mock-server &
+      - name: Iniciar Aplicacao
+        run: npm run server &
 
-     - name: Executando testes
-       run: npm cypress run 
+      - name: Executar testes E2E
+        run: npx cypress run
+
+
+
+
+
+
   
    
