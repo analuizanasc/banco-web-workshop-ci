@@ -18,19 +18,19 @@ jobs:
    #acoes ou passos
    steps:
 
-    -name: Checkout do repositório
+    - name: Checkout do repositório
     users: actions/checkout@v4
 
-    -name: Instalando dependências
+    - name: Instalando dependências
     users: npm install
 
-    -name: Iniciando servidor da aplicação
+    - name: Iniciando servidor da aplicação
     users: npm run server &
 
-    -name: Iniciando servidor do Mock 
+    - name: Iniciando servidor do Mock 
     users: npm run mock-server &
 
-    -name: Executando testes
+    - name: Executando testes
     users: npm cypress run 
   
    
